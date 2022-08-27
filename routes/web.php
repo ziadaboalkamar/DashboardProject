@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard_theme', function () {
-    return view('front.users.create');
-});
+Route::get('/users',[UserController::class,"index"])->name("user.index");
+Route::get('/create',[UserController::class,"create"])->name("user.create");
 
 
 Route::get('/dashboard', function () {

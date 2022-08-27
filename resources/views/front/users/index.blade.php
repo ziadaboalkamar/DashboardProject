@@ -1,5 +1,7 @@
 @extends("layouts.dashboard")
+@section("title","عرض المستخدمين")
 
+@section("css")@endsection
 @section('content')
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
@@ -30,41 +32,48 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Project</th>
-                            <th>Client</th>
-                            <th>Users</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>الايميل</th>
+                            {{-- <th>Status</th> --}}
+                            <th>العمليات</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
+                            @isset($users)
+@php
+$i = 1;
+@endphp
+                            @foreach ($users as $user )
+                            <tr>
+                                <td>{{$i++ }}</td>
+                                <td>
+                                    {{$user->name}}
+                                </td>
+                                <td>{{$user->email}}</td>
 
-                            </td>
-                            <td>Peter Charls</td>
-                            <td>
-
-                            </td>
-                            <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                        <i data-feather="more-vertical"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <i data-feather="edit-2" class="mr-50"></i>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <i data-feather="trash" class="mr-50"></i>
-                                            <span>Delete</span>
-                                        </a>
+                                {{-- <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td> --}}
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                <i data-feather="edit-2" class="mr-50"></i>
+                                                <span>Edit</span>
+                                            </a>
+                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                <i data-feather="trash" class="mr-50"></i>
+                                                <span>Delete</span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endisset
+
 
                         </tbody>
                     </table>
