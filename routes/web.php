@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard_theme', function () {
-    return view('layouts.dashboard');
+    return view('front.users.create');
 });
 
 
