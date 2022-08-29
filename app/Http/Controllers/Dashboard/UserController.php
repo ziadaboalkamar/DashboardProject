@@ -16,4 +16,18 @@ class UserController extends Controller
     public function create(){
         return view("front.users.create");
     }
+    public function store(Request $request){
+        //dd($request); return $request
+        
+        User::create([
+            "name"=>$request->name,
+            "password" =>bcrypt($request->password) ,
+            "email" =>$request->email,
+            "phone_number" =>$request->phone_number
+        ]);
+
+        return view("front.users.create");
+      
+
+    }
 }

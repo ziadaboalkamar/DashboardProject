@@ -19,8 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/users',[UserController::class,"index"])->name("user.index");
-Route::get('/create',[UserController::class,"create"])->name("user.create");
-
+Route::get('/user/create',[UserController::class,"create"])->name("user.create");
+Route::post('user/store',[UserController::class,"store"])->name("user.store");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

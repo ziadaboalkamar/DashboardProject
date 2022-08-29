@@ -24,7 +24,9 @@
                 <h4 class="card-title">اضافة مستخدم جديد</h4>
             </div>
             <div class="card-body">
-                <form class="form form-vertical">
+                <form class="form form-vertical" action="{{route("user.store")}}" method="POST">
+                    @csrf
+                    {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
@@ -33,7 +35,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="user"></i></span>
                                     </div>
-                                    <input type="text" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
+                                    <input type="text" name="name" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
                                 </div>
                             </div>
                         </div>
@@ -44,7 +46,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="mail"></i></span>
                                     </div>
-                                    <input type="email" id="email-id-icon" class="form-control" name="email-id-icon" placeholder="Email" />
+                                    <input type="email" name="email" id="email-id-icon" class="form-control" name="email-id-icon" placeholder="Email" />
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="smartphone"></i></span>
                                     </div>
-                                    <input type="number" id="contact-info-icon" class="form-control" name="contact-icon" placeholder="Mobile" />
+                                    <input type="number" name="phone_number" id="contact-info-icon" class="form-control" name="contact-icon" placeholder="Mobile" />
                                 </div>
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="lock"></i></span>
                                     </div>
-                                    <input type="password" id="password-icon" class="form-control" name="contact-icon" placeholder="Password" />
+                                    <input type="password" name="password" id="password-icon" class="form-control" name="contact-icon" placeholder="Password" />
                                 </div>
                             </div>
                         </div>
@@ -77,20 +79,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="lock"></i></span>
                                     </div>
-                                    <input type="password" id="password-icon" class="form-control" name="contact-icon" placeholder="Password" />
+                                    <input type="password" name="password_confirm"  id="password-icon" class="form-control" name="contact-icon" placeholder="Password" />
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-12">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck4" />
-                                    <label class="custom-control-label" for="customCheck4">Remember me</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="reset" class="btn btn-primary mr-1">Submit</button>
+                            <button type="submit" class="btn btn-primary mr-1">Submit</button>
                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
                         </div>
                     </div>
