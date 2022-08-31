@@ -1,15 +1,6 @@
 @extends("layouts.dashboard")
 
 @section('content')
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -33,7 +24,7 @@
                 <h4 class="card-title">اضافة مستخدم جديد</h4>
             </div>
             <div class="card-body">
-                <form class="form form-vertical" action="{{route("user.store")}}" method="POST">
+                <form class="form form-vertical" action="{{route("user.update",["id"=>$user->id])}}" method="POST">
                     @csrf
                     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                     <div class="row">

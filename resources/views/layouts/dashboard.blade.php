@@ -46,6 +46,20 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/custom-rtl.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/assets/css/style-rtl.css')}} ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    body{
+        font-family: 'Cairo', sans-serif !important;
+
+    }
+    .text-truncate{
+        font-family: 'Cairo', sans-serif;
+
+    }
+</style>
     <!-- END: Custom CSS-->
     @yield("css")
 </head>
@@ -447,6 +461,8 @@
 <script src="{{asset('dashboard/app-assets/js/scripts/pages/app-todo.js')}}"></script>
 <!-- END: Page JS-->
 @yield("js")
+@toastr_js
+@toastr_render
 <script>
     $(window).on('load', function() {
         if (feather) {
