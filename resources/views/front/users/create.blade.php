@@ -2,6 +2,7 @@
 
 @section('content')
 @if ($errors->any())
+
 <div class="alert alert-danger">
     <ul>
         @foreach ($errors->all() as $error)
@@ -45,6 +46,9 @@
                                         <span class="input-group-text"><i data-feather="user"></i></span>
                                     </div>
                                     <input type="text" name="name" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
+                                    {{-- @error('name')
+                                    <span class="text-danger">{{$message}}</span>
+                                    @enderror --}}
                                 </div>
                             </div>
                         </div>

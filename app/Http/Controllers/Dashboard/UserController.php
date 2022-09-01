@@ -18,15 +18,16 @@ class UserController extends Controller
     public function create(){
         return view("front.users.create");
     }
-    public function store(Request $request){
+    public function store(UserRequest $request){
         //dd($request); return $request
-        $validator = Validator::make($request->all(), [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-            'password_confirm' => ['required', 'string'],
-            'name' => ['required','max:255'],
-            "phone_number" =>['required']
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'email' => ['required', 'string', 'email','unique:users'],
+        //     'password' => ['required', 'string'],
+        //     'password_confirm' => ['required', 'string'],
+        //     'name' => ['required','max:255'],
+        //     "phone_number" =>['required']
+        // ]); 
+        // return redirect()->back()->with(["errors" => $validator ]);
  if($request){
             if($request->password == $request->password_confirm && $request->password != null){
                 User::create([
