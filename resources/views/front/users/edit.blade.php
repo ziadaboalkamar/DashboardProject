@@ -24,7 +24,7 @@
                 <h4 class="card-title">اضافة مستخدم جديد</h4>
             </div>
             <div class="card-body">
-                <form class="form form-vertical" action="{{route("user.update",["id"=>$user->id])}}" method="POST">
+                <form class="form form-vertical" action="{{route("user.update",$user->id)}}" method="POST">
                     @csrf
                     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                     <div class="row">
@@ -35,7 +35,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="user"></i></span>
                                     </div>
-                                    <input type="text" name="name" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
+                                    <input type="text" value="{{$user->name}}" name="name" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="mail"></i></span>
                                     </div>
-                                    <input type="email" name="email" id="email-id-icon" class="form-control" name="email-id-icon" placeholder="Email" />
+                                    <input type="email" value="{{$user->email}}" name="email" id="email-id-icon" class="form-control" name="email-id-icon" placeholder="Email" />
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="smartphone"></i></span>
                                     </div>
-                                    <input type="number" name="phone_number" id="contact-info-icon" class="form-control" name="contact-icon" placeholder="Mobile" />
+                                    <input type="number" value="{{$user->phone_number}}" name="phone_number" id="contact-info-icon" class="form-control" name="contact-icon" placeholder="Mobile" />
                                 </div>
                             </div>
                         </div>

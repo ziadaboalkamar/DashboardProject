@@ -35,6 +35,7 @@
             </div>
             <div class="card-body">
                 <form class="form form-vertical" action="{{route("user.store")}}" method="POST">
+                   {{-- @method("put") --}}
                     @csrf
                     {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                     <div class="row">
@@ -45,10 +46,10 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="user"></i></span>
                                     </div>
-                                    <input type="text" name="name" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
-                                    {{-- @error('name')
+                                    <input type="text" name="name" value="{{old("name")}}" id="first-name-icon" class="form-control" name="fname-icon" placeholder="First Name" />
+                                    @error('name')
                                     <span class="text-danger">{{$message}}</span>
-                                    @enderror --}}
+                                    @enderror
                                 </div>
                             </div>
                         </div>

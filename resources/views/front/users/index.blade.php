@@ -59,11 +59,11 @@ $i = 1;
                                             <i data-feather="more-vertical"></i>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{route("user.edit",['id' => $user->id])}}">
+                                            <a class="dropdown-item" href="{{route("user.edit",$user->id)}}">
                                                 <i data-feather="edit-2" class="mr-50"></i>
                                                 <span>Edit</span>
                                             </a>
-                                            <a class="dropdown-item" href="javascript:void(0);">
+                                            <a class="dropdown-item" href="{{route("user.delete",$user->id)}}">
                                                 <i data-feather="trash" class="mr-50"></i>
                                                 <span>Delete</span>
                                             </a>

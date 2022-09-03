@@ -51,26 +51,57 @@ class UserController extends Controller
         }
 }
 
-//   public function edit(Request $request,$id){
+public function edit(Request $request,$id){
+$user = User::find($id);
+if(!$user){
+    toastr()->error('هذا المستخدم غير موجود');
+                return redirect()->route("user.index");
+}else{
+    return view("front.users.edit",compact("user"));
+}
 
-//     $user = User::find($id);
-//     return view("front.users.edit",compact("user"));
+}
+ 
+public function update(Request $request,$id){
 
-//   }
+    $user = User::find($id);
 
-    // public function update(Request $request,$id){
-    // return $request;
-    //     //dd($request); return $request
+    if($request){
+        if($request->password == $request->password_confirm && $request->password != null){
+            $user->update([
+                "name"=>$request->name,
+                "password" =>bcrypt($request->password) ,
+                "email" =>$request->email,
+                "phone_number" =>$request->phone_number
+            ]);
+            toastr()->success('تم تعديل المستخدم بنجاح');
+            return redirect()->route("user.index");
+        }elseif($request->password == null){
+            $user->update([
+                "name"=>$request->name,
+                "email" =>$request->email,
+                "phone_number" =>$request->phone_number
+            ]);
+            toastr()->success('تم تعديل المستخدم بنجاح');
+            return redirect()->route("user.index"); 
+        }elseif($request->password != $request->password_confirm){
+            toastr()->error('كلمة المرور غير متطابقة');
+            return redirect()->route("user.create");   
+        }
+    }
+}
 
-    //     UserDB::update([
-    //         "name"=>$request->name,
-    //         "password" =>bcrypt($request->password) ,
-    //         "email" =>$request->email,
-    //         "phone_number" =>$request->phone_number
-    //     ]);
-    //     toastr()->success('تم انشاء المستخدم بنجاح');
-    //     return redirect()->route("user.index");
 
-
-    // }
+public function delete(Request $request,$id){
+    $user = User::find($id);
+    if(!$user){
+        toastr()->error('هذا المستخدم غير موجود');
+        return redirect()->route("user.index");
+    }else{
+        $user->delete();
+        toastr()->error('تم حذف المستخدم بنجاح');
+        return redirect()->route("user.index");
+    }
+    
+}
 }
