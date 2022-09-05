@@ -13,18 +13,6 @@
     <link rel="apple-touch-icon" href="{{asset("dashboard/app-assets/images/ico/apple-icon-120.png")}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dashboard/app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/vendors-rtl.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/editors/quill/katex.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/editors/quill/monokai-sublime.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/editors/quill/quill.snow.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/forms/select/select2.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/extensions/dragula.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/vendors/css/extensions/toastr.min.css')}}">
-    <!-- END: Vendor CSS-->
-
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/bootstrap-extended.css')}}">
@@ -36,17 +24,16 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/plugins/forms/form-quill-editor.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/plugins/forms/pickers/form-flat-pickr.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/plugins/extensions/ext-component-toastr.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/pages/app-todo.css')}}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/custom-rtl.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/assets/css/style-rtl.css')}} ">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/assets/css/style-rtl.css')}}">
+    <!-- END: Custom CSS-->
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
 
@@ -110,7 +97,7 @@
                         </div>
                     </li>
                     <li class="scrollable-container media-list">
-                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="../../../app-assets/images/pages/eCommerce/1.png" alt="donuts" width="62">
+                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/app-assets/images/pages/eCommerce/1.png')}}" alt="donuts" width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> Apple watch 5</a></h6><small class="cart-item-by">By Apple</small>
@@ -123,7 +110,7 @@
                                 <h5 class="cart-item-price">$374.90</h5>
                             </div>
                         </div>
-                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="../../../app-assets/images/pages/eCommerce/7.png" alt="donuts" width="62">
+                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/app-assets/images/pages/eCommerce/7.png')}}" alt="donuts" width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> Google Home Mini</a></h6><small class="cart-item-by">By Google</small>
@@ -136,7 +123,7 @@
                                 <h5 class="cart-item-price">$129.40</h5>
                             </div>
                         </div>
-                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="../../../app-assets/images/pages/eCommerce/2.png" alt="donuts" width="62">
+                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/app-assets/images/pages/eCommerce/2.png')}}" alt="donuts" width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> iPhone 11 Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -149,7 +136,7 @@
                                 <h5 class="cart-item-price">$699.00</h5>
                             </div>
                         </div>
-                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="../../../app-assets/images/pages/eCommerce/3.png" alt="donuts" width="62">
+                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/app-assets/images/pages/eCommerce/3.png')}}" alt="donuts" width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> iMac Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -162,7 +149,7 @@
                                 <h5 class="cart-item-price">$4,999.00</h5>
                             </div>
                         </div>
-                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="../../../app-assets/images/pages/eCommerce/5.png" alt="donuts" width="62">
+                        <div class="media align-items-center"><img class="d-block rounded mr-1" src="{{asset('dashboard/app-assets/images/pages/eCommerce/5.png')}}" alt="donuts" width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html"> MacBook Pro</a></h6><small class="cart-item-by">By Apple</small>
@@ -195,7 +182,7 @@
                     <li class="scrollable-container media-list"><a class="d-flex" href="javascript:void(0)">
                             <div class="media d-flex align-items-start">
                                 <div class="media-left">
-                                    <div class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
+                                    <div class="avatar"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-15.jpg')}}" alt="avatar" width="32" height="32"></div>
                                 </div>
                                 <div class="media-body">
                                     <p class="media-heading"><span class="font-weight-bolder">Congratulation Sam 🎉</span>winner!</p><small class="notification-text"> Won the monthly best seller badge.</small>
@@ -204,7 +191,7 @@
                         </a><a class="d-flex" href="javascript:void(0)">
                             <div class="media d-flex align-items-start">
                                 <div class="media-left">
-                                    <div class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-3.jpg" alt="avatar" width="32" height="32"></div>
+                                    <div class="avatar"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-3.jpg')}}" alt="avatar" width="32" height="32"></div>
                                 </div>
                                 <div class="media-body">
                                     <p class="media-heading"><span class="font-weight-bolder">New message</span>&nbsp;received</p><small class="notification-text"> You have 10 unread messages</small>
@@ -267,7 +254,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user"><a class="dropdown-item" href="page-profile.html"><i class="mr-50" data-feather="user"></i> Profile</a><a class="dropdown-item" href="app-email.html"><i class="mr-50" data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="mr-50" data-feather="check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="mr-50" data-feather="message-square"></i> Chats</a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="page-account-settings.html"><i class="mr-50" data-feather="settings"></i> Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="mr-50" data-feather="credit-card"></i> Pricing</a><a class="dropdown-item" href="page-faq.html"><i class="mr-50" data-feather="help-circle"></i> FAQ</a><a class="dropdown-item" href="page-auth-login-v2.html"><i class="mr-50" data-feather="power"></i> Logout</a>
@@ -282,7 +269,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="../../../app-assets/images/icons/xls.png" alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{asset('dashboard/app-assets/images/icons/xls.png')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing Manager</small>
                 </div>
@@ -290,7 +277,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="../../../app-assets/images/icons/jpg.png" alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{asset('dashboard/app-assets/images/icons/jpg.png')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd Developer</small>
                 </div>
@@ -298,7 +285,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="../../../app-assets/images/icons/pdf.png" alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{asset('dashboard/app-assets/images/icons/pdf.png')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital Marketing Manager</small>
                 </div>
@@ -306,7 +293,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="../../../app-assets/images/icons/doc.png" alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{asset('dashboard/app-assets/images/icons/doc.png')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web Designer</small>
                 </div>
@@ -317,7 +304,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view.html">
             <div class="d-flex align-items-center">
-                <div class="avatar mr-75"><img src="../../../app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
+                <div class="avatar mr-75"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-8.jpg')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
                 </div>
@@ -325,7 +312,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view.html">
             <div class="d-flex align-items-center">
-                <div class="avatar mr-75"><img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="png" height="32"></div>
+                <div class="avatar mr-75"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-1.jpg')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd Developer</small>
                 </div>
@@ -333,7 +320,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view.html">
             <div class="d-flex align-items-center">
-                <div class="avatar mr-75"><img src="../../../app-assets/images/portrait/small/avatar-s-14.jpg" alt="png" height="32"></div>
+                <div class="avatar mr-75"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-14.jpg')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing Manager</small>
                 </div>
@@ -341,7 +328,7 @@
         </a></li>
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view.html">
             <div class="d-flex align-items-center">
-                <div class="avatar mr-75"><img src="../../../app-assets/images/portrait/small/avatar-s-6.jpg" alt="png" height="32"></div>
+                <div class="avatar mr-75"><img src="{{asset('dashboard/app-assets/images/portrait/small/avatar-s-6.jpg')}}" alt="png" height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
                 </div>
@@ -360,7 +347,7 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="../../../html/rtl/vertical-menu-template/index.html"><span class="brand-logo">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{asset('dashboard/html/rtl/vertical-menu-template/index.html')}}"><span class="brand-logo">
                             <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                                 <defs>
                                     <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -437,32 +424,36 @@
 </footer>
 <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 <!-- END: Footer-->
-<!-- BEGIN: Vendor JS-->
-<script src="{{asset('dashboard/app-assets/vendors/js/vendors.min.js')}}"></script>
-<!-- BEGIN Vendor JS-->
 
-<!-- BEGIN: Page Vendor JS-->
-<script src="{{asset('dashboard/app-assets/vendors/js/editors/quill/katex.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/editors/quill/highlight.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/editors/quill/quill.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/extensions/dragula.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
-<script src="{{asset('dashboard/app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
-<!-- END: Page Vendor JS-->
 
+    <!-- BEGIN: Vendor JS-->
+    <script src="{{asset('dashboard/app-assets/vendors/js/vendors.min.js')}}"></script>
+    <!-- BEGIN Vendor JS-->
+{{--<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>--}}
 <!-- BEGIN: Theme JS-->
 <script src="{{asset('dashboard/app-assets/js/core/app-menu.js')}}"></script>
 <script src="{{asset('dashboard/app-assets/js/core/app.js')}}"></script>
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="{{asset('dashboard/app-assets/js/scripts/pages/app-todo.js')}}"></script>
+<script src="{{asset('dashboard/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>
+<!-- END: Page JS-->
+
+<script>
+    $(window).on('load', function() {
+        if (feather) {
+            feather.replace({
+                width: 14,
+                height: 14
+            });
+        }
+    })
+</script>
 <!-- END: Page JS-->
 @yield("js")
 @toastr_js
 @toastr_render
+
 <script>
     $(window).on('load', function() {
         if (feather) {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\Dashboard\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.services.index');
 });
 
 Route::get('/users',[UserController::class,"index"])->name("user.index");
@@ -24,6 +25,10 @@ Route::post('user/store',[UserController::class,"store"])->name("user.store");
 Route::get('/user/edit/{id}',[UserController::class,"edit"])->name("user.edit");
 Route::post('user/update/{id}',[UserController::class,"update"])->name("user.update");
 Route::get('user/delete/{id}',[UserController::class,"delete"])->name("user.delete");
+
+Route::get('/services',[ServicesController::class,"index"])->name("service.index");
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
