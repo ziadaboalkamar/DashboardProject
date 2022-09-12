@@ -1,5 +1,5 @@
 @extends("layouts.dashboard")
-@section("title","عرض المستخدمين")
+@section("title","عرض الخدمات")
 
 @section('css')
     <!-- BEGIN: Vendor CSS-->
@@ -12,14 +12,11 @@
     <!-- END: Vendor CSS-->
 @stop
 @section('content')
-
-
-
                     <div class="content-header row">
                         <div class="content-header-left col-md-9 col-12 mb-2">
                             <div class="row breadcrumbs-top">
                                 <div class="col-12">
-                                    <h2 class="content-header-title float-left mb-0">المدن</h2>
+                                    <h2 class="content-header-title float-left mb-0">الخدمات</h2>
 
                                 </div>
                             </div>
@@ -34,9 +31,11 @@
                                     <table class="services-list-table table">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th>الاسم</th>
-                                            <th>الايميل</th>
-                                            <th>رقم الهاتف</th>
+                                            <th>الاسم </th>
+                                            <th>وصف</th>
+                                            <th>EN الاسم</th>
+                                            <th>EN وصف</th>
+                                            <th>تاريخ الانشاء</th>
                                             <th>العمليات</th>
                                         </tr>
                                         </thead>
@@ -46,18 +45,18 @@
                             </div>
                             <!-- list section end -->
                         </section>
-                        <form action="{{route('user.create')}}" method="get" class="d-none" id="create_new">
+{{-- <form action="{{route('user.create')}}" method="get" class="d-none" id="create_new">
                             @csrf
                             <button type="submit"></button>
-                        </form>
-                    @foreach ($cities as $city)
+                        </form> --}}
+                    {{-- @foreach ($services as $service)
                         <!-- Modal -->
-                            <div class="modal fade" id="delete{{ $city->id }}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="delete{{ $service->id }}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel"> حذف المدينة <span class="text-primary">{{ $city->city_name }}</span></h5>
+                                            <h5 class="modal-title" id="exampleModalLabel"> حذف المدينة <span class="text-primary">{{ $service->service_name }}</span></h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -78,7 +77,43 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach  --}}
+
+
+                        <div class="modal fade" id="modals-create">
+                            <div class="modal-dialog">
+                                <form class="create-new-service modal-content pt-0"
+                         id="create-new-service" enctype="multipart/form-data">
+
+                                    <div class="modal-header mb-1">
+                                        <h5 class="modal-title" id="exampleModalLabel">اضافة خدمة جديد</h5>
+                                    </div>
+                                    <div class="modal-body flex-grow-1">
+                                        <div class="form-group">
+                                            <label for="question">{{ __('الاسم') }}</label>
+                                            <input type="text" class="form-control" value="{{ old('question') }}" name="name" id="name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="question">{{ __('الاسم EN') }}</label>
+                                            <input type="text" class="form-control" value="{{ old('question') }}" name="name_en" id="name_en" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">{{ __('وصف') }}</label>
+                                            <textarea class="form-control" rows="3" name="description" id="description" >{{ old('description') }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">{{ __(' En وصف') }}</label>
+                                            <textarea class="form-control" rows="3" name="description_en" id="description_en" >{{ old('description') }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <span id="btn-save" class="btn btn-primary mr-1">حفظ</span>
+                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">الغاء
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -103,7 +138,7 @@
     <script src="{{asset('dashboard/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js')}}"></script>
     <script src="{{asset('dashboard/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
-
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <!-- END: Page Vendor JS-->
 
     <script>
@@ -128,8 +163,10 @@
             },
             columns: [
                 {data: 'name', name:'name',searchable: true},
-                {data: 'email', name:'name',searchable: true},
-                {data: 'phone_number', name:'name',searchable: true},
+                {data: 'name_en', name:'name_en',searchable: true},
+                {data: 'description', name:'description',searchable: false},
+                {data: 'description_en', name:'description_en',searchable: false},
+                {data: 'created_at', name:'created_at',searchable: false},
                 {data:''}
             ],
             order: [0, 'desc'],
@@ -180,11 +217,20 @@
                 },
 
                 {
-                    text: 'اضافة مدينة',
+                    text: 'اضافة خدمة',
                     className: 'add-new btn btn-primary mt-50',
                     onclick: "",
                     attr: {
-                        'onclick': "document.getElementById('create_new').submit()",
+                        'data-toggle': 'modal',
+                        'data-target': '#modals-create', 
+                    
+                        // "type": "button",
+                        // "onclick": "location.href = '/control-panel/photo-album/create'",
+
+
+                        // 'onclick': "document.getElementById('create_new').submit()",
+
+                    
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('btn-secondary');
@@ -208,7 +254,7 @@
                             }) +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right">' +
-                            '<a href="cities/' + id + '/edit" class="dropdown-item">' +
+                             '<a href="services/' + id + '/edit" class="dropdown-item">' +
                             feather.icons['archive'].toSvg({
                                 class: 'font-small-4 mr-50'
                             }) +
@@ -231,5 +277,38 @@
 
 
     </script>
+    <script>
 
+            // CREATE
+            $("#btn-save").click(function (e) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                e.preventDefault();
+                var type = "POST";
+                var ajaxurl = "{{route("service.store")}}";
+               
+                $.ajax({
+                    type: type,
+                    url: ajaxurl,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "name":jQuery('#name').val() ,
+                        "name_en":jQuery('#name_en').val() ,
+                        "description":jQuery('#description').val() ,
+                        "description_en":jQuery('#description_en').val() ,
+            },
+                    dataType: 'json',
+                    success: function (data) {
+                        swal.fire("Done!", data.message, "success");
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+    </script>
 @stop

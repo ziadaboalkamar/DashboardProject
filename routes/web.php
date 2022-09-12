@@ -16,7 +16,7 @@ use App\Http\Controllers\Dashboard\ServicesController;
 */
 
 Route::get('/', function () {
-    return view('front.services.index');
+    return view('welcome');
 });
 
 Route::get('/users',[UserController::class,"index"])->name("user.index");
@@ -27,6 +27,7 @@ Route::post('user/update/{id}',[UserController::class,"update"])->name("user.upd
 Route::get('user/delete/{id}',[UserController::class,"delete"])->name("user.delete");
 
 Route::get('/services',[ServicesController::class,"index"])->name("service.index");
+Route::post('/services',[ServicesController::class,"store"])->name("service.store");
 
 
 

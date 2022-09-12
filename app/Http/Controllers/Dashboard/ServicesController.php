@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Services;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 class ServicesController extends Controller
@@ -12,19 +13,38 @@ class ServicesController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $cities = User::all();
+            $service = Services::all();
 
-            return DataTables::of($cities)
+            return DataTables::of($service)
                 ->addIndexColumn()
-                ->editColumn('created_at', function (User $cities) {
-                    return $cities->created_at->format('Y-m-d');
+                ->editColumn('created_at', function (Services $service) {
+                    $date = "";
+                    if($service->created_at != null ){
+                     $date =  $service->created_at->format('Y-m-d');
+                }else{
+                     $date= "لا يوجد";
+                }
+                return $date;
                 })
                 ->rawColumns(['record_select', 'actions'])
                 ->make(true);
         }
 
         return view('front.services.index',[
-            'cities' => User::get(),
+            'services' => Services::get(),
+        ]);
+    }
+    public function store(Request $request){
+
+        Services::create([
+            "name"=>$request->name,
+            "name_en" =>$request->name_en ,
+            "description" =>$request->description,
+            "description_en" =>$request->description_en
+        ]);
+        return response()->json([
+            "message" => "success",
+            "status" => 200
         ]);
     }
 }
