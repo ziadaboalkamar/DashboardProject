@@ -88,6 +88,8 @@
                                     <div class="modal-header mb-1">
                                         <h5 class="modal-title" id="exampleModalLabel">اضافة خدمة جديد</h5>
                                     </div>
+                                    <div class="alert alert-danger" style="display:none"></div>
+
                                     <div class="modal-body flex-grow-1">
                                         <div class="form-group">
                                             <label for="question">{{ __('الاسم') }}</label>
@@ -105,6 +107,7 @@
                                             <label for="description">{{ __(' En وصف') }}</label>
                                             <textarea class="form-control" rows="3" name="description_en" id="description_en" >{{ old('description') }}</textarea>
                                         </div>
+                                        <input type="hidden" name="id" id="id">
                                     </div>
                                     <div class="modal-footer">
                                         <span id="btn-save" class="btn btn-primary mr-1">حفظ</span>
@@ -139,6 +142,7 @@
     <script src="{{asset('dashboard/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+    
     <!-- END: Page Vendor JS-->
 
     <script>
@@ -222,15 +226,15 @@
                     onclick: "",
                     attr: {
                         'data-toggle': 'modal',
-                        'data-target': '#modals-create', 
-                    
+                        'data-target': '#modals-create',
+
                         // "type": "button",
                         // "onclick": "location.href = '/control-panel/photo-album/create'",
 
 
                         // 'onclick': "document.getElementById('create_new').submit()",
 
-                    
+
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('btn-secondary');
@@ -254,13 +258,14 @@
                             }) +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right">' +
-                             '<a href="services/' + id + '/edit" class="dropdown-item">' +
+                             '<a href="javascript:void()" onclick="edit('+id+')" id="edit_button" class="dropdown-item" data-id="'+ id +'"  data-toggle="modal"' +
+                            ' data-target="#modals-create">' +
                             feather.icons['archive'].toSvg({
                                 class: 'font-small-4 mr-50'
                             }) +
                             'تعديل</a>' +
-                            '<a href="javascript:void()" class="dropdown-item" data-toggle="modal"' +
-                            ' data-target="#delete' + id + '">' +
+                            '<a href="javascript:void()" onclick="deleteConfirmation('+id+')" class="dropdown-item" ' +
+                            ' >' +
                             feather.icons['trash-2'].toSvg({
                                 class: 'font-small-4 mr-50'
                             }) +
@@ -289,7 +294,7 @@
                 e.preventDefault();
                 var type = "POST";
                 var ajaxurl = "{{route("service.store")}}";
-               
+
                 $.ajax({
                     type: type,
                     url: ajaxurl,
@@ -302,13 +307,98 @@
             },
                     dataType: 'json',
                     success: function (data) {
-                        swal.fire("Done!", data.message, "success");
+                        if(data.errors){
+                            jQuery.each(data.errors, function(key, value){
+                                jQuery('.alert-danger').show();
+                                jQuery('.alert-danger').append('<p>'+value+'</p>');
+                            });
+                        }else{
+                            swal.fire("تم العملية بنجاح!", data.message, "success");
+
+                        }
+
                     },
                     error: function (data) {
                         console.log(data);
                     }
                 });
             });
+            function edit(id) {
 
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    var type = "GET";
+                    var ajaxurl = "{{route("service.edit")}}";
+
+                    $.ajax({
+                        type: type,
+                        url: ajaxurl,
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id": id,
+
+                        },
+                        dataType: 'json',
+                        success: function (res) {
+                            $('#id').val(res.id);
+                            $('#name').val(res.name);
+                            $('#name_en').val(res.name_en);
+                            $('#description').val(res.description);
+                            $('#description_en').val(res.description_en);
+
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });
+
+            }
+
+            function deleteConfirmation(id) {
+                swal.fire({
+                    title: "حذف خدمة",
+                    icon: 'question',
+                    text: "هل انت متاكد؟",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonText: "نعم",
+                    cancelButtonText: "لا",
+                    reverseButtons: !0
+                }).then(function (e) {
+
+                    if (e.value === true) {
+                        let token = $('meta[name="csrf-token"]').attr('content');
+                        let _url = `{{route('service.delete')}}`;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: _url,
+                            data: {"_token": "{{ csrf_token() }}","id": id},
+                            success: function (resp) {
+                                if (resp.success) {
+                                    swal.fire("Done!", resp.message, "success");
+                                    location.reload();
+                                } else {
+                                    swal.fire("Error!", 'Sumething went wrong.', "error");
+                                }
+                            },
+                            error: function (resp) {
+                                swal.fire("Error!", 'Sumething went wrong.', "error");
+                            }
+                        });
+
+                    } else {
+                        e.dismiss;
+                    }
+
+                }, function (dismiss) {
+                    return false;
+                })
+            }
     </script>
 @stop

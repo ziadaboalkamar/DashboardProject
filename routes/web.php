@@ -28,6 +28,8 @@ Route::get('user/delete/{id}',[UserController::class,"delete"])->name("user.dele
 
 Route::get('/services',[ServicesController::class,"index"])->name("service.index");
 Route::post('/services',[ServicesController::class,"store"])->name("service.store");
+Route::get('/edit/services',[ServicesController::class,"edit"])->name("service.edit");
+Route::post('/delete/services',[ServicesController::class,"delete"])->name("service.delete");
 
 
 

@@ -31,7 +31,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/assets/css/style-rtl.css')}}">
     <!-- END: Custom CSS-->
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/app-assets/vendors/css/vendors-rtl.min.css') }}">
 
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -434,6 +437,7 @@
 <script src="{{asset('dashboard/app-assets/js/core/app-menu.js')}}"></script>
 <script src="{{asset('dashboard/app-assets/js/core/app.js')}}"></script>
 <!-- END: Theme JS-->
+{{--<script src="{{ asset('dashboard/app-assets/js/app.js') }}?<?php time(); ?>"></script>--}}
 
 <!-- BEGIN: Page JS-->
 <script src="{{asset('dashboard/app-assets/js/scripts/tables/table-datatables-basic.js')}}"></script>

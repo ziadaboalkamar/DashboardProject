@@ -35,16 +35,45 @@ class ServicesController extends Controller
         ]);
     }
     public function store(Request $request){
+        $validator = \Validator::make($request->all(), [
+            "name"=>'required',
+            "name_en" =>'required' ,
+            "description" =>'required',
+            "description_en" =>'required'
 
-        Services::create([
+        ],
+    [
+        "name.required" => "هذا الحقل مطلوب"
+    ]);
+
+        if ($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()->all()]);
+        }
+        Services::updateOrCreate(  [
+            'id' => $request->id
+        ],[
             "name"=>$request->name,
             "name_en" =>$request->name_en ,
             "description" =>$request->description,
             "description_en" =>$request->description_en
         ]);
+   
         return response()->json([
             "message" => "success",
             "status" => 200
         ]);
     }
+    public function edit(Request $request){
+        $services = Services::find($request->id);
+        return Response()->json($services);
+    }
+
+    public function delete(Request $request){
+        $services = Services::find($request->id);
+        $services->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'تم الحذف بنجاح',
+        ]);    }
 }
