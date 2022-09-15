@@ -314,7 +314,7 @@
                             });
                         }else{
                             swal.fire("تم العملية بنجاح!", data.message, "success");
-
+                            $("#create-new-service").trigger("reset");
                         }
 
                     },
