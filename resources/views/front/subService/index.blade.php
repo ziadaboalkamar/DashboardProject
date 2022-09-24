@@ -1,5 +1,5 @@
 @extends("layouts.dashboard")
-@section("title","عرض الخدمات")
+@section("title","عرض الخدمات الفرعية" )
 
 @section('css')
     <!-- BEGIN: Vendor CSS-->
@@ -31,10 +31,10 @@
                                     <table class="services-list-table table">
                                         <thead class="thead-light">
                                         <tr>
+                                            <th>صورة</th>
                                             <th>الاسم </th>
                                             <th>وصف</th>
-                                            <th>EN الاسم</th>
-                                            <th>EN وصف</th>
+                                            <th>الخدمة الاساسية </th>
                                             <th>تاريخ الانشاء</th>
                                             <th>العمليات</th>
                                         </tr>

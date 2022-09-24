@@ -35,6 +35,7 @@ class ServicesController extends Controller
         ]);
     }
     public function store(Request $request){
+     
         $validator = \Validator::make($request->all(), [
             "name"=>'required',
             "name_en" =>'required' ,
@@ -50,6 +51,22 @@ class ServicesController extends Controller
         {
             return response()->json(['errors'=>$validator->errors()->all()]);
         }
+        // if($request->id != null){
+        //     Services::find($request->id)->update([
+        //         "name"=>$request->name,
+        //     "name_en" =>$request->name_en ,
+        //     "description" =>$request->description,
+        //     "description_en" =>$request->description_en
+        //     ]);
+
+        // }else{
+        //     Services::create( [
+        //         "name"=>$request->name,
+        //         "name_en" =>$request->name_en ,
+        //         "description" =>$request->description,
+        //         "description_en" =>$request->description_en
+        //     ]);
+        // }
         Services::updateOrCreate(  [
             'id' => $request->id
         ],[
@@ -71,6 +88,12 @@ class ServicesController extends Controller
 
     public function delete(Request $request){
         $services = Services::find($request->id);
+        if(!$services){
+            return response()->json([
+                'erorr' => true,
+                'message' => 'هذه الخدمة غير موجودة',
+            ]);   
+        }
         $services->delete();
         return response()->json([
             'success' => true,
