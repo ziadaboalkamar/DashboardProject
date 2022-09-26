@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\ServicesController;
+use App\Http\Controllers\Dashboard\SubServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::get('/edit/services',[ServicesController::class,"edit"])->name("service.e
 Route::post('/delete/services',[ServicesController::class,"delete"])->name("service.delete");
 
 
+Route::get('/subservice',[SubServiceController::class,"index"])->name("sub.service.index");
+Route::post('/subservice',[SubServiceController::class,"store"])->name("sub.service.store");
+Route::get('/edit/subservice',[SubServiceController::class,"edit"])->name("sub.service.edit");
+Route::post('/delete/subservice',[SubServiceController::class,"delete"])->name("sub.service.delete");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

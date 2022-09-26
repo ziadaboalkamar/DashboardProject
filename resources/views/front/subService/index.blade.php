@@ -84,9 +84,9 @@
                             <div class="modal-dialog">
                                 <form class="create-new-service modal-content pt-0"
                          id="create-new-service" enctype="multipart/form-data">
-
+@csrf
                                     <div class="modal-header mb-1">
-                                        <h5 class="modal-title" id="exampleModalLabel">اضافة خدمة جديد</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">اضافة خدمة فرعية جديد</h5>
                                     </div>
                                     <div class="alert alert-danger" style="display:none"></div>
 
@@ -106,6 +106,19 @@
                                         <div class="form-group">
                                             <label for="description">{{ __(' En وصف') }}</label>
                                             <textarea class="form-control" rows="3" name="description_en" id="description_en" >{{ old('description') }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="question">{{ __('الخدمة الاساسية') }}</label>
+                                            <select  class="form-control" name="service_id" id="service_id">
+                                                <option disabled selected>......</option>
+                                                @foreach ($services as $service )
+                                                <option value="{{$service->id}}">{{$service->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            </div>
+                                        <div class="form-group">
+                                            <label for="image">{{ __('الصورة') }}</label>
+                                            <input type="file" class="form-control" value="{{ old('image') }}" name="image" id="image" required>
                                         </div>
                                         <input type="hidden" name="id" id="id">
                                     </div>
@@ -163,13 +176,13 @@
                 "url": "{{ asset('app-assets/datatable-lang/' . app()->getLocale() . '.json') }}"
             },
             ajax: {
-                url: '{{ route('service.index') }}',
+                url: '{{ route('sub.service.index') }}',
             },
             columns: [
+                {data: 'image', name:'image',searchable: false},
                 {data: 'name', name:'name',searchable: true},
-                {data: 'name_en', name:'name_en',searchable: true},
                 {data: 'description', name:'description',searchable: false},
-                {data: 'description_en', name:'description_en',searchable: false},
+                {data: 'service_id', name:'service_id',searchable: true},
                 {data: 'created_at', name:'created_at',searchable: false},
                 {data:''}
             ],
@@ -293,21 +306,17 @@
                 });
                 e.preventDefault();
                 var type = "POST";
-                var ajaxurl = "{{route("service.store")}}";
+                var ajaxurl = "{{route("sub.service.store")}}";
+                var form_data = new FormData(document.getElementById('create-new-service'));
 
                 $.ajax({
                     type: type,
                     url: ajaxurl,
-                    data: {
-                        
-                        "_token": "{{ csrf_token() }}",
-                        "name":jQuery('#name').val() ,
-                        "name_en":jQuery('#name_en').val() ,
-                        "description":jQuery('#description').val() ,
-                        "description_en":jQuery('#description_en').val() ,
-                        "id":jQuery('#id').val() ,
+                    processData: false,
+                    contentType: false,
+                    serverSide:true,
 
-            },
+                    data: form_data,
                     dataType: 'json',
                     success: function (data) {
                         if(data.errors){
