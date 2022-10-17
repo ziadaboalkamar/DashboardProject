@@ -12,11 +12,12 @@
     <!-- END: Vendor CSS-->
 @stop
 @section('content')
+{{--@if(LaravelLocalization::getCurrentLocale() == "ar") {{$service->name}} @elseif(LaravelLocalization::getCurrentLocale() == "en") {{$service->name_en}} @endif--}} 
                     <div class="content-header row">
                         <div class="content-header-left col-md-9 col-12 mb-2">
                             <div class="row breadcrumbs-top">
                                 <div class="col-12">
-                                    <h2 class="content-header-title float-left mb-0">الخدمات</h2>
+                                    <h2 class="content-header-title float-left mb-0">{{__("message.service")}}</h2>
 
                                 </div>
                             </div>

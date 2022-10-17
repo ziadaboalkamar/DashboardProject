@@ -19,7 +19,12 @@ use App\Http\Controllers\Dashboard\SubServiceController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ //...
+  
 Route::get('/users',[UserController::class,"index"])->name("user.index");
 Route::get('/user/create',[UserController::class,"create"])->name("user.create");
 Route::post('user/store',[UserController::class,"store"])->name("user.store");
@@ -37,7 +42,7 @@ Route::get('/subservice',[SubServiceController::class,"index"])->name("sub.servi
 Route::post('/subservice',[SubServiceController::class,"store"])->name("sub.service.store");
 Route::get('/edit/subservice',[SubServiceController::class,"edit"])->name("sub.service.edit");
 Route::post('/delete/subservice',[SubServiceController::class,"delete"])->name("sub.service.delete");
-
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

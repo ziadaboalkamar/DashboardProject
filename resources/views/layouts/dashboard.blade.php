@@ -14,6 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dashboard/app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
     <!-- BEGIN: Theme CSS-->
+    @if(LaravelLocalization::getCurrentLocale()  == "ar")
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/bootstrap-extended.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css-rtl/colors.css')}}">
@@ -35,7 +36,29 @@
 
     <link rel="stylesheet" type="text/css"
           href="{{ asset('dashboard/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
+          @elseif(LaravelLocalization::getCurrentLocale() == "en")
+          <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/components.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/themes/dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/themes/bordered-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/themes/semi-dark-layout.css')}}">
 
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/app-assets/css/custom-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('dashboard/assets/css/style-rtl.css')}}">
+    <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/app-assets/vendors/css/vendors-rtl.min.css') }}">
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('dashboard/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+@endif
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
@@ -79,8 +102,15 @@
             </ul>
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
-            <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="javascript:void(0);" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="javascript:void(0);" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="javascript:void(0);" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="javascript:void(0);" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
+            <li class="nav-item dropdown dropdown-language">
+                <a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-flag">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a class="dropdown-item"  hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" data-language="en">
+                        <i class="flag-icon flag-icon-us"></i>  {{ $properties['native'] }}</a>
+                        @endforeach
+                   </div>
             </li>
             <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
             <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>

@@ -7,6 +7,7 @@ use App\Models\SubService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\App;
 
 class SubServiceController extends Controller
 {
@@ -23,6 +24,15 @@ class SubServiceController extends Controller
                      $date =  $service->services->name;
                 }else{
                      $date= "هذه الخدمة غير موجودة";
+                }
+                return $date;
+                })
+                ->editColumn('name', function (SubService $service) {
+                    $date = "";
+                    if(App::getLocale() ==  "ar"){
+                     $date =  $service->name;
+                }elseif(App::getLocale() ==  "en"){
+                    $date =  $service->name_en;
                 }
                 return $date;
                 })
